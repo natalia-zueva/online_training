@@ -1,0 +1,71 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "email": "admin@sky.pro",
+            "first_name": null,
+            "last_name": null,
+            "phone": null,
+            "city": null,
+            "avatar": null
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "email": "test@sky.pro",
+            "first_name": null,
+            "last_name": null,
+            "phone": null,
+            "city": null,
+            "avatar": null
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "email": "mail@sky.pro",
+            "first_name": null,
+            "last_name": null,
+            "phone": null,
+            "city": null,
+            "avatar": null
+        }
+    },
+    {
+        "model": "users.payment",
+        "pk": 1,
+        "fields": {
+            "user": "1",
+            "payment_date": "2024-02-16",
+            "course": "1",
+            "lesson": "1",
+            "payment_method": "CASH"
+        }
+    },
+        {
+        "model": "users.payment",
+        "pk": 2,
+        "fields": {
+            "user": "2",
+            "payment_date": "2024-02-19",
+            "course": "1",
+            "lesson": "2",
+            "payment_method": "CASH"
+        }
+    },
+            {
+        "model": "users.payment",
+        "pk": 3,
+        "fields": {
+            "user": "3",
+            "payment_date": "2024-02-19",
+            "course": "1",
+            "lesson": "3",
+            "payment_method": "CARD"
+        }
+    }
+]
