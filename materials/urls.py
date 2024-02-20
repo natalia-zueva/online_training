@@ -9,11 +9,11 @@ app_name = MaterialsConfig.name
 
 
 urlpatterns = [
-    path('', LessonListView.as_view(), name='lesson_list'),
-    path('<int:pk>', LessonDetailView.as_view(), name='lesson_detail'),
-    path('<int:pk>/update/', LessonUpdateView.as_view(), name='lesson_update'),
-    path('create/', LessonCreateView.as_view(), name='lesson_create'),
-    path('<int:pk>/delete/', LessonDeleteView.as_view(), name='lesson_delete'),
+    path('', LessonListAPIView.as_view(), name='lesson_list'),
+    path('<int:pk>', LessonDetailAPIView.as_view(), name='lesson_detail'),
+    path('<int:pk>/update/', LessonUpdateAPIView.as_view(), name='lesson_update'),
+    path('create/', LessonCreateAPIView.as_view(), name='lesson_create'),
+    path('<int:pk>/delete/', LessonDeleteAPIView.as_view(), name='lesson_delete'),
 ]
 
 router = routers.SimpleRouter()

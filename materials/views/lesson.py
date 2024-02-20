@@ -4,26 +4,26 @@ from materials.models import Lesson
 from materials.serializers.lesson import LessonSerializer
 
 
-class LessonDetailView(RetrieveAPIView):
+class LessonDetailAPIView(RetrieveAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
 
-class LessonListView(ListAPIView):
+class LessonListAPIView(ListAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
 
-class LessonCreateView(CreateAPIView):
+class LessonCreateAPIView(CreateAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
 
-class LessonUpdateView(UpdateAPIView):
+class LessonUpdateAPIView(UpdateAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
 
-class LessonDeleteView(DestroyAPIView):
+class LessonDeleteAPIView(DestroyAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
