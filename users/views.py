@@ -11,5 +11,3 @@ class PaymentListAPIView(ListAPIView):
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ('course', 'lesson', 'payment_method',)
     ordering_fields = ('payment_date',)
-
-

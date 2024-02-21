@@ -13,6 +13,7 @@
     },
     {
         "model": "users.user",
+
         "pk": 2,
         "fields": {
             "email": "test@sky.pro",

@@ -3,10 +3,10 @@ from rest_framework import routers
 
 from materials.apps import MaterialsConfig
 from materials.views.course import CourseViewSet
-from materials.views.lesson import *
+from materials.views.lesson import LessonListAPIView, LessonDetailAPIView, LessonUpdateAPIView, LessonCreateAPIView, \
+    LessonDeleteAPIView
 
 app_name = MaterialsConfig.name
-
 
 urlpatterns = [
     path('', LessonListAPIView.as_view(), name='lesson_list'),
