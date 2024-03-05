@@ -2,14 +2,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Course
+from materials.paginators import CoursePagination
 from materials.permissions import IsModerator, IsOwner
 from materials.serializers.course import CourseSerializer
+
 
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = []
+    pagination_class = CoursePagination
 
     def perform_create(self, serializer):
         new_course = serializer.save()

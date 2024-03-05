@@ -24,7 +24,7 @@ class Lesson(models.Model):
     description = models.TextField(verbose_name='Описание урока', **NULLABLE)
     video_link = models.URLField(verbose_name='Ссылка на видео', **NULLABLE)
 
-    course = models.ForeignKey('materials.Course', on_delete=models.CASCADE, verbose_name='Урок')
+    course = models.ForeignKey('materials.Course', on_delete=models.CASCADE, verbose_name='курс', **NULLABLE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
@@ -33,3 +33,16 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = 'Урок'
         verbose_name_plural = 'Уроки'
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='пользователь')
+    course = models.ForeignKey('materials.Course', on_delete=models.CASCADE, **NULLABLE, verbose_name='курс')
+    status = models.BooleanField(default=False, verbose_name='статус подписки', **NULLABLE)
+
+    def __str__(self):
+        return f'{self.user} - {self.course}'
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписка'
