@@ -149,8 +149,8 @@ class SubscriptionTestCase(APITestCase):
         """Тест на создание подписки на курс"""
 
         data = {
-            "user": self.user,
-            "course": self.course,
+            "user": self.user.id,
+            "course": self.course.id,
         }
 
         response = self.client.post(
@@ -162,4 +162,9 @@ class SubscriptionTestCase(APITestCase):
         self.assertEquals(
             response.status_code,
             status.HTTP_200_OK
+        )
+
+        self.assertEquals(
+            response.json(),
+            {'message': 'Вы подписались на обновления курса'}
         )
