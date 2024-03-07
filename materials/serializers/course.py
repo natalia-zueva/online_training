@@ -6,8 +6,9 @@ from materials.serializers.lesson import LessonSerializer
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    lessons_count = SerializerMethodField()
+    lessons_count = serializers.SerializerMethodField()
     lesson_in_course = LessonSerializer(source='lesson_set', many=True)
+    is_subscribed = serializers.SerializerMethodField()
 
     def get_lessons_count(self, course):
         return Lesson.objects.filter(course=course).count()
