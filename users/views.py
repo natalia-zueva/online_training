@@ -1,6 +1,8 @@
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.permissions import AllowAny
 
+from materials.services import create_stripe_price, create_stripe_session
 from users.models import Payment
 from users.serializers import PaymentSerializer
 
@@ -11,3 +13,14 @@ class PaymentListAPIView(ListAPIView):
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ('course', 'lesson', 'payment_method',)
     ordering_fields = ('payment_date',)
+
+
+class PaymentCreateAPIView(CreateAPIView):
+    serializer_class = PaymentSerializer
+    permission_classes = [AllowAny]
+
+    def perform_create(self, serializer):
+        payment = serializer.save()
+        stripe_price_id = create_stripe_price(payment.course.price)
+        payment.payment_link, payment.payment_id = create_stripe_session(stripe_price_id)
+        payment.save()
