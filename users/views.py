@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.permissions import AllowAny
@@ -20,7 +21,13 @@ class PaymentCreateAPIView(CreateAPIView):
     permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
+        course = serializer.validated_data.get('course')
+        if not course:
+            raise serializers.ValidationError('Укажите курс')
+
         payment = serializer.save()
-        stripe_price_id = create_stripe_price(payment.course.price)
+        stripe_price_id = create_stripe_price(payment)
         payment.payment_link, payment.payment_id = create_stripe_session(stripe_price_id)
         payment.save()
+
+
