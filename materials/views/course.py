@@ -5,6 +5,7 @@ from materials.models import Course
 from materials.paginators import CoursePagination
 from materials.permissions import IsModerator, IsOwner
 from materials.serializers.course import CourseSerializer
+from materials.tasks import send_mail_update_course
 
 
 
@@ -31,3 +32,8 @@ class CourseViewSet(ModelViewSet):
         elif self.action == 'delete':
             permission_classes = [IsAuthenticated, IsOwner]
         return [permission() for permission in permission_classes]
+
+    def perform_update(self, serializer):
+        update_course = serializer.save()
+        send_mail_update_course.delay(update_course.id)
+        update_course.save()
