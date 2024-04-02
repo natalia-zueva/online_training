@@ -8,7 +8,8 @@ class Course(models.Model):
     title = models.CharField(max_length=500, verbose_name='Название курса')
     preview = models.ImageField(upload_to='course_preview', **NULLABLE, verbose_name='Превью')
     description = models.TextField(verbose_name='Описание курса', **NULLABLE)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='Владелец')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE,
+                              verbose_name='Владелец')
     price = models.PositiveIntegerField(verbose_name='Цена курса', **NULLABLE)
 
     def __str__(self):
