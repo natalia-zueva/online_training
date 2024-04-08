@@ -10,9 +10,9 @@ services:
   db:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_DB=traningdocker
-      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - pg_data:/var/lib/postgresql/data/pgdata
@@ -33,6 +33,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - .env
 
   celery:
     build: .
